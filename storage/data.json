@@ -1,0 +1,18 @@
+[
+  {
+    "id": "464cbaa0-799a-4b8d-a6df-fc4aa5a42618",
+    "title": "1984",
+    "author": "George Orwell",
+    "isbn": "123",
+    "year": "1949",
+    "status": "available"
+  },
+  {
+    "id": "cf5bd313-cca4-4155-956c-856a00b0c6f9",
+    "title": "Brave New World",
+    "author": "Aldous Huxley",
+    "isbn": "456",
+    "year": "1932",
+    "status": "available"
+  }
+]
