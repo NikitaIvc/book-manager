@@ -38,6 +38,12 @@ class EntityService(BaseService):
         self.storage.save_data(data)
 
     @property
+    def entities_data(self):
+        if not self._entities_data:
+            self._load_entities()
+        return self._entities_data
+
+    @property
     def entities(self):
         if not self._entities_data:
             self._load_entities()
@@ -47,10 +53,10 @@ class EntityService(BaseService):
         return self.entities
 
     def get_by_id(self, id):
-        return self._entities_data.get(id)
+        return self.entities_data.get(id)
 
     def add(self, item):
-        self._entities_data[item.id] = item
+        self.entities_data[item.id] = item
         self._save_entities()
         log.info(
             "Added %s %s: %s",
@@ -61,14 +67,14 @@ class EntityService(BaseService):
         return item
 
     def delete(self, id):
-        if id not in self._entities_data:
+        if id not in self.entities_data:
             log.warning(
                 "No %s found with id %s",
                 self.entity_type.__name__,
                 id,
             )
             return
-        self._entities_data.pop(id)
+        self.entities_data.pop(id)
         self._save_entities()
         log.info(
             "Delete %s %s",
