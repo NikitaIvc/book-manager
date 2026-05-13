@@ -1,13 +1,19 @@
 import logging
 from pathlib import Path
 from typing import ClassVar
-
-from actions import ExitAction
-from actions.actions import Action, ActionResult
+from actions import (
+    Action,
+    ActionResult,
+    ExitAction,
+    ListEntitiesAction,
+    AddEntityAction,
+    DeleteEntityAction
+)
 from managers.base_manager import BaseManager
 from models.book import Book
 from service.entity_service import EntityService
 from storage.json_storage import JsonStorage
+
 
 log = logging.getLogger(__name__)
 
@@ -24,10 +30,11 @@ class ExampleAction(Action):
         return ActionResult()
 
 
-
 class BookManager(BaseManager):
     actions: ClassVar[tuple[type[Action], ...]] = (
-        ExampleAction,
+        ListEntitiesAction,
+        AddEntityAction,
+        DeleteEntityAction,
         ExitAction,
     )
 
@@ -90,6 +97,8 @@ class BookManager(BaseManager):
                     continue
 
             result: ActionResult = action.execute()
+            if result.error:
+                print("ERROR")
             if result.stop:
                 print("\nStop running Book Manager")
                 self.running = False

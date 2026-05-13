@@ -4,7 +4,7 @@ from dataclasses import dataclass
 
 @dataclass
 class ActionResult:
-    stop: bool = False,
+    stop: bool = False
     error: bool = False
 
 

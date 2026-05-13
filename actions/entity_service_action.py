@@ -6,14 +6,13 @@ from service.entity_service import EntityService
 
 
 class EntityServiceAction(Action, ABC):
-    not_editable_fields: ClassVar[frozenset[str]] = frozenset({
-        "id",
-    })
+    not_editable_fields: ClassVar[frozenset[str]] = frozenset(
+        {"id"},
+    )
 
     def __init__(self, service: EntityService):
         self.service = service
         super().__init__()
-
 
     @property
     def entity_name(self) -> str:

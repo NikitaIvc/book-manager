@@ -3,7 +3,6 @@ from pathlib import Path
 from managers.book_manager import BookManager
 
 
-
 def main():
     logging.basicConfig(level=logging.INFO)
 
